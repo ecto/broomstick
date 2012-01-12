@@ -10,6 +10,8 @@ Lightweight streaming and in-memory caching static file middleware for Director
 
 ##usage
 
+If you would like to have a `./public` folder with an index.html and some images in it, the following will suffice:
+
 ````javascript
 var director = require('director'),
     broomstick = require('broomstick'),
