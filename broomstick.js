@@ -1,3 +1,7 @@
+/*
+ * broomstick
+ * <cam@onswipe.com>
+ */
 var mime = require('mime');
 var fs = require('fs');
 var path = require('path');
@@ -10,6 +14,7 @@ var Broomstick = function (options) {
   this.cache = {};
   var b = this;
   b.log('initialized');
+
   return function (route) {
     var req = this.req;
     var res = this.res;
@@ -35,7 +40,6 @@ var Broomstick = function (options) {
         } else {
           var type = mime.lookup(path.extname(route));
           fs.readFile(filepath, function (err, data) {
-            var type = mime.lookup(path.extname(route));
             if (err) {
               b.log('ERR', err.message);
               res.writeHead(404);
