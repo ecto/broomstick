@@ -40,21 +40,21 @@ var Broomstick = function (options) {
           res.end();
         } else {
           var type = mime.lookup(path.extname(route));
-          fs.readFile(filepath, function (err, data) {
-            if (err) {
-              b.log('ERR', err.message);
-              res.writeHead(404);
-              res.end();
+          res.writeHead(200, { 'Content-Type': type })
+          var fileStream = fs.createReadStream(filepath);
+          b.cache[route] = {
+            mime: type
+          }
+          fileStream.on('data', function (data) {
+            res.write(data);
+            if (!b.cache[route].data) {
+              b.cache[route].data = data;
             } else {
-              b.log('req', 'found file ' + filepath + ' of type ' + type);
-              res.writeHead(200, { 'Content-Type': type })
-              res.end(data.toString());
-              b.log('req', 'sent file, caching...');
-              b.cache[route] = {
-                mime: type,
-                data: data
-              }
+              b.cache[route].data += data;
             }
+          });
+          fileStream.on('end', function () {
+            res.end();
           });
         }
       });
