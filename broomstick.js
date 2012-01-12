@@ -8,6 +8,7 @@ var path = require('path');
 var colors = require('colors');
 
 var Broomstick = function (options) {
+  options = options || {};
   this.path = options.path || 'public';
   this.index = options.index || 'index.html';
   this.verbose = options.verbose || false;
