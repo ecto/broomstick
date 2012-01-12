@@ -45,6 +45,7 @@ var broom = new broomstick({
 
     $ node examples/test.js
 
+...and in a separate terminal:
 
     $ curl http://localhost:8080/hello.txt
     Hello world!
