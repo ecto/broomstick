@@ -13,16 +13,18 @@ Lightweight streaming and in-memory caching static file middleware for Director
 If you would like to have a `./public` folder with an index.html and some images in it, the following will suffice:
 
 ````javascript
-var director = require('director'),
-    broomstick = require('broomstick'),
-    router = new director.http.Router();
+var http = require('http'),
+    director = require('director'),
+    broomstick = require('../');
 
-var broom = new broomstick({ path: 'public' });
+var broom = new broomstick({ path: '.' });
+var router = new director.http.Router();
 
 router.get('*', broom);
-router.get('/', broom);
 
-var server = http.createServer(router.dispatch);
+var server = http.createServer(function (req, res) {
+  router.dispatch(req, res);
+});
 
 server.listen(8080);
 ````
@@ -38,6 +40,13 @@ var broom = new broomstick({
   index: 'index.html' // default file to load on ./ paths
 });
 ````
+
+##test
+
+    $ node examples/test.js
+
+    $ curl http://localhost:8080/hello.txt
+    Hello world!
 
 ##license
 
