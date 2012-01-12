@@ -11,6 +11,9 @@
   "engines": {
     "node": "*"
   },
-  "dependencies": {},
+  "dependencies": {
+    "colors": "*",
+    "mime": "*"
+  },
   "devDependencies": {}
 }
