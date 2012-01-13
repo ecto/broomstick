@@ -15,9 +15,9 @@ If you would like to have a `./public` folder with an index.html and some images
 ````javascript
 var http = require('http'),
     director = require('director'),
-    broomstick = require('../');
+    broomstick = require('broomstick');
 
-var broom = new broomstick({ path: '.' });
+var broom = new broomstick();
 var router = new director.http.Router();
 
 router.get('*', broom);
