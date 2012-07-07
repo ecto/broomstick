@@ -33,7 +33,7 @@ var Broomstick = function (options) {
       var filepath = path.join(b.path, route);
       b.log('req', 'no cached version for ' + route);
       b.log('req', 'looking in: ' + filepath);
-      path.exists(filepath, function (exists) {
+      fs.exists(filepath, function (exists) {
         if (!exists) {
           b.log('req', filepath + ' does not exist: sending 404');
           res.writeHead(404);
