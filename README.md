@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/ecto/broomstick.png)](http://travis-ci.org/ecto/broomstick)
 #broomstick
 
 Lightweight streaming and in-memory caching static file middleware for Director
